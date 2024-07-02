@@ -1,0 +1,88 @@
+﻿@using GestorPacientes.Core.Application.ViewModels.Paciente
+@model PacienteUpdateViewModel
+
+@{
+    ViewData["Title"] = "Pacientes";
+}
+
+<div class="d-flex justify-content-between bottom-line">
+    <div>
+        <h1 class="d-inline">Pacientes</h1>
+    </div>
+    <div>
+        <h5 class="fw-light col-m-3 offset-6">
+            Editando: @Html.DisplayFor(model => model.Nombre)
+                      @Html.DisplayFor(model => model.Apellido)
+        </h5>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+        <div class="card">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div class="card-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="PacienteId" class="form-control" />
+                    <input type="hidden" asp-for="Foto" class="form-control" />
+
+                    <div class="form-group">
+                        <label asp-for="Nombre" class="control-label">Nombre</label>
+                        <input asp-for="Nombre" class="form-control" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Apellido" class="control-label">Apellido</label>
+                        <input asp-for="Apellido" class="form-control" />
+                        <span asp-validation-for="Apellido" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Telefono" class="control-label">Teléfono</label>
+                        <input asp-for="Telefono" class="form-control" />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Direccion" class="control-label">Dirección</label>
+                        <input asp-for="Direccion" class="form-control" />
+                        <span asp-validation-for="Direccion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Cedula" class="control-label">Cédula</label>
+                        <input asp-for="Cedula" class="form-control" />
+                        <span asp-validation-for="Cedula" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FechaNacimiento" class="control-label">Fecha de nacimiento</label>
+                        <input asp-for="FechaNacimiento" type="date" class="form-control" />
+                        <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" asp-for="Alergico" id="alergico" />
+                        <label class="form-check-label" for="alergico">Alergias</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" asp-for="Fumador" id="fumador" />
+                        <label class="form-check-label" for="fumador">Fumador</label>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label asp-for="Imagen" class="control-label">Foto</label>
+                        <input required type="file" asp-for="Imagen" class="form-control-file" />
+                        <span asp-validation-for="Imagen" class="text-danger"></span>
+                    </div>                  
+                </div>
+                <div class="card-footer">
+                    <div class="form-group mt-2 text-center">
+                        <input type="submit" value="Guardar" class="btn btn-block btn-success col-6 mx-auto" />
+                        <a asp-action="Index" class="btn btn-block btn-primary col-5 mx-auto">Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mt-5">
+            <img src="/images/patiente/@Model.Foto" class="card-img" alt="@Model.Nombre">
+        </div>
+    </div>
+</div>

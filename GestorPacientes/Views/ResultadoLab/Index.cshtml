@@ -1,0 +1,57 @@
+﻿@using GestorPacientes.Core.Application.ViewModels.ResultadoLab
+@model List<ResultadoLabViewModel>
+
+@{
+    ViewData["Title"] = "ResultadoLab";
+}
+
+<div class="d-flex justify-content-between bottom-line">
+    <div>
+        <h1 class="d-inline">Resultado Laboratorio</h1>
+    </div>
+    <div>
+        <div class="input-group mt-2">
+            <input type="text" id="CedulaFilter" class="form-control" placeholder="" aria-label="Digite cedula:" aria-describedby="button">
+            <button class="btn btn-outline-success" type="button" id="button" onclick="filterByCedula()">Buscar</button>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="row">
+    <div class="col-11 mx-auto">
+        @if (Model.Where(x => x.Estado == "Pendiente") == null || Model.Where(x => x.Estado == "Pendiente").Count() == 0)
+        {
+            <h3 class="fw-light">No hay pruebas pendientes</h3>
+        }
+        else
+        {
+            <table class="table">
+                <!-- Encabezado de la tabla -->
+                <thead class="table-dark">
+                    <tr>
+                        <th>Paciente</th>
+                        <th>Cedula</th>
+                        <th>Prueba a realizar</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Where(x => x.Estado == "Pendiente"))
+                    {
+                        <tr class="rowlist">
+                            <!-- Datos de la cita para "Consulta" -->
+                            <td>@item.NombrePaciente</td>
+                            <td>@item.Cedula</td>
+                            <td>@item.NombrePruebaLab</td>
+                            <td class="text-center col-4">
+                                <a asp-action="Result" asp-route-id="@item.ResultadosLabId" class="btn btn-outline-primary col-6 mx-auto">Resultados</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

@@ -1,0 +1,64 @@
+﻿@using GestorPacientes.Core.Application.ViewModels.Doctor
+@model DoctorSaveViewModel
+
+@{    
+    ViewData["Title"] = "Doctores";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">                
+                <div class="card-body">                    
+                    <form method="post" asp-controller="Doctor" asp-action="Create" enctype="multipart/form-data">
+
+                        <div class="mb-3">
+                            <label asp-for="Nombre" class="form-label">Nombre: </label>
+                            <input type="text" asp-for="Nombre" class="form-control" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Apellido" class="form-label">Apellido: </label>
+                            <input type="text" asp-for="Apellido" class="form-control" />
+                            <span asp-validation-for="Apellido" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Email: </label>
+                            <input type="text" asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Telefono" class="form-label">Telefono: </label>
+                            <input type="text" asp-for="Telefono" class="form-control" />
+                            <span asp-validation-for="Telefono" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Cedula" class="form-label">Cedula: </label>
+                            <input type="text" asp-for="Cedula" class="form-control" />
+                            <span asp-validation-for="Cedula" class="text-danger"></span>
+                        </div>                                                
+                                              
+                        <div class="mb-3">
+                            <label asp-for="Imagen" class="form-label">Seleccione un Imagen:</label>
+                            <input required asp-for="Imagen" class="form-control" /> 
+                        </div>                                              
+
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <a asp-controller="Doctor" asp-action="Index" class="btn btn-warning">Volver atras</a>
+
+                    </form>
+                    
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

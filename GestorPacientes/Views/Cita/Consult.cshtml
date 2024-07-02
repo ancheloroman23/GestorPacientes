@@ -1,0 +1,41 @@
+﻿@using GestorPacientes.Core.Application.ViewModels.Cita
+@model CitaConsultaViewModel
+
+@{
+    ViewData["Title"] = "Cita";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1>Citas</h1>
+                <h5 class="fw-lighter">Consultando???</h5>
+            </div>
+            <hr />
+
+            <div class="card">
+                <form asp-action="Consult">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Area de registro</h5>
+                    </div>
+                    <div class="card-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input asp-for="CitaId" type="hidden" class="form-control" />
+                        <div class="form-group">
+                            <label asp-for="PruebaLabSeleccionada" class="control-label">Seleccionar las pruebas de laboratorio a realizar</label>
+                            <select asp-for="PruebaLabSeleccionada" asp-items="@(new SelectList(Model.PruebaLabs, "PruebaLabId", "NombrePruebaLab"))" class="form-control" required></select>
+                            <span asp-validation-for="PruebaLabSeleccionada" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-light">
+                        <div class="form-group mt-2 text-center">
+                            <input type="submit" value="Guardar" class="btn btn-success col-5 mx-auto" />
+                            <a asp-action="Index" class="btn btn-outline-primary col-5 mx-auto mt-2">Regresar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@using GestorPacientes.Core.Application.ViewModels.Paciente
+@model PacienteUpdateViewModel
+
+@{
+    ViewData["Title"] = "Paciente";
+}
+
+<h1>Pacientes</h1>
+<div class="row">
+    <hr />
+    <h3>¿Quieres eliminar este Paciente?</h3>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <dl class="row mt-3">
+                <dt class="col-sm-4">
+                    Nombre Completo
+                </dt>
+                <dd class="col-sm-8">
+                    @Model.Nombre @Model.Apellido
+                </dd>
+                <dt class="col-sm-4">
+                    Cedula
+                </dt>
+                <dd class="col-sm-8">
+                    @Model.Cedula
+                </dd>
+            </dl>
+            <div class="row">
+                <form asp-action="Delete">
+                    <input type="submit" value="Aceptar" class="btn btn-danger col-5 mx-auto" />
+                    <a asp-action="Index" class="btn btn-primary col-5 mx-auto">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

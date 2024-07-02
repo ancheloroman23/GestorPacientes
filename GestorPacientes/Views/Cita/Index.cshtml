@@ -1,0 +1,148 @@
+﻿@using GestorPacientes.Core.Application.ViewModels.Cita
+@model IEnumerable<CitaViewModel>
+
+@{
+    ViewData["Title"] = "Cita";
+}
+
+
+<div class="d-flex justify-content-between bottom-line">
+    <div>
+        <h1 class="d-inline">Citas</h1>
+    </div>
+    <div>
+        <a class="btn btn-primary m-2" asp-controller="Cita" asp-action="Create">Nueva cita</a>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-11 mx-auto">
+        @if (Model == null || Model.Count() == 0)
+        {
+            <h3 class="fw-light">No existen citas</h3>
+        }
+        else
+        {
+            @* Lista para "Consulta" *@
+            @if (Model.Any(x => x.EstadoCita == "Consulta"))
+            {
+                <h3 class="fw-light">Citas Pendientes de Consulta</h3>
+                <hr />
+                <table class="table">
+                    <!-- Encabezado de la tabla -->
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Doctor</th>
+                            <th>Fecha</th>
+                            <th>Motivo</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Where(x => x.EstadoCita == "Consulta"))
+                        {
+                            <tr>
+                                <!-- Datos de la cita para "Consulta" -->
+                                <td>@Html.DisplayFor(modelItem => item.Paciente.Nombre) @Html.DisplayFor(modelItem => item.Paciente.Apellido)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Doctor.Nombre) @Html.DisplayFor(modelItem => item.Doctor.Apellido)</td>
+                                <td class="text-center col-2">@Html.DisplayFor(modelItem => item.FechaCita)</td>
+                                <td class="col-3">@Html.DisplayFor(modelItem => item.RazonCita)</td>
+                                <td class="text-center col-4">
+                                    <a asp-action="Consult" asp-route-id="@item.CitaId" class="btn btn-outline-info col-6 mx-auto">Consultar</a>
+                                    <a asp-action="Delete" asp-route-id="@item.CitaId" class="btn btn-outline-danger col-4 mx-auto">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <h3 class="fw-light">No existen citas pendientes de consulta.</h3>
+                <hr />
+            }
+
+            @* Lista para "Resultados" *@
+            @if (Model.Any(x => x.EstadoCita == "Resultado"))
+            {
+                <h3 class="fw-light">Citas con Resultados</h3>
+                <table class="table">
+                    <!-- Encabezado de la tabla -->
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Doctor</th>
+                            <th>Fecha</th>
+                            <th>Motivo</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Where(x => x.EstadoCita == "Resultado"))
+                        {
+                            <tr>
+                                <!-- Datos de la cita para "Resultados" -->
+                                <td>@Html.DisplayFor(modelItem => item.Paciente.Nombre) @Html.DisplayFor(modelItem => item.Paciente.Apellido)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Doctor.Nombre) @Html.DisplayFor(modelItem => item.Doctor.Apellido)</td>
+                                <td class="text-center col-2">@Html.DisplayFor(modelItem => item.FechaCita)</td>
+                                <td class="col-3">@Html.DisplayFor(modelItem => item.RazonCita)</td>
+                                <td class="text-center col-4">
+                                    <a asp-action="Check" asp-route-id="@item.CitaId" class="btn btn-outline-info col-6 mx-auto">Consultar Resultados</a>
+                                    <a asp-action="Delete" asp-route-id="@item.CitaId" class="btn btn-outline-danger col-4 mx-auto">Eliminar</a>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <hr />
+                <h3 class="fw-light">No existen citas con resultados.</h3>
+                <hr />
+            }
+
+            @* Lista para "Completa" *@
+            @if (Model.Any(x => x.EstadoCita == "Finalizado"))
+            {
+                <h3 class="fw-light">Citas Completas</h3>
+                <table class="table">
+                    <!-- Encabezado de la tabla -->
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Doctor</th>
+                            <th>Fecha</th>
+                            <th>Motivo</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Where(x => x.EstadoCita == "Finalizado"))
+                        {
+                            <tr>
+                                <!-- Datos de la cita para "Completa" -->
+                                <td>@Html.DisplayFor(modelItem => item.Paciente.Nombre) @Html.DisplayFor(modelItem => item.Paciente.Apellido)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Doctor.Nombre) @Html.DisplayFor(modelItem => item.Doctor.Apellido)</td>
+                                <td class="text-center col-2">@Html.DisplayFor(modelItem => item.FechaCita)</td>
+                                <td class="col-3">@Html.DisplayFor(modelItem => item.RazonCita)</td>
+                                <td class="text-center col-4">
+                                    <a asp-action="Results" asp-route-id="@item.CitaId" class="btn btn-outline-info col-6 mx-auto">Ver Resultados</a>
+                                    <a asp-action="Delete" asp-route-id="@item.CitaId" class="btn btn-outline-danger col-4 mx-auto">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <hr />
+                <h3 class="fw-light">No existen citas completadas.</h3>
+                <hr />
+            }
+        }
+    </div>
+</div>

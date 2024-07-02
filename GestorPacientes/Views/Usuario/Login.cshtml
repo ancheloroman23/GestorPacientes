@@ -1,0 +1,44 @@
+﻿@using GestorPacientes.Core.Application.ViewModels.Usuario
+@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<style>
+    .container-fluid.bg-light.py-5 {
+        background-image: url('https://t3.ftcdn.net/jpg/06/31/48/64/360_F_631486438_ulkY2lKYk9ByyX64KJ6OrJZZqKz7Ef9C.jpg');
+        background-size: cover;
+        background-position: center;        
+    }   
+
+    .transparent-card {
+        background-color: rgba(255, 255, 255, 0.8); 
+    }
+</style>
+
+<div class="container-fluid bg-light py-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card shadow-lg p-4 transparent-card">
+                <h2 class="text-center mb-4">Bienvenido a ARC GESTOR PACIENTE</h2>
+                <hr>
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                <form method="post" asp-controller="Usuario" asp-action="Login">
+                    <div class="mb-3">
+                        <label for="NombreUsuario" class="form-label">Nombre de usuario</label>
+                        <input id="NombreUsuario" class="form-control" asp-for="NombreUsuario">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Clave" class="form-label">Contraseña</label>
+                        <input type="password" id="Clave" class="form-control" asp-for="Clave">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Iniciar sesión</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>    
+</div>

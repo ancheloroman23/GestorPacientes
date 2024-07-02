@@ -1,0 +1,48 @@
+﻿@using GestorPacientes.Core.Application.ViewModels.Cita
+@model CitaViewModel
+
+@{
+    ViewData["Title"] = "Cita";
+}
+
+<div class="container">
+    <div class="d-flex justify-content-between bottom-line">
+        <div>
+            <h1 class="d-inline">Resultados de Laboratorio</h1>
+        </div>
+        <div class="mt-2">
+            <a asp-controller="Cita" asp-action="Index" class="btn btn-outline-primary mx-auto">
+                Regresar
+            </a>
+        </div>
+    </div>
+    <hr />
+    <div class="text-center">
+        <h5>@Html.DisplayFor(model => model.Paciente.Nombre) @Html.DisplayFor(model => model.Paciente.Nombre), @Html.DisplayFor(model => model.FechaCita) </h5>
+    </div>
+    <hr />
+    <div class="container">
+        @if (Model.ResultadosLabs.Count() == 0)
+        {
+            <h3 class="mt-3 ml-2 fw-light">No hay pruebas realizadas</h3>
+        }
+        else
+        {
+            <div class="row">
+                @foreach (var item in Model.ResultadosLabs)
+                {
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                <h4>  @Html.DisplayFor(modelItem => item.PruebaLab.NombrePruebaLab)</h4>
+                            </div>
+                            <div class="card-body">
+                                @Html.DisplayFor(modelItem => item.Resultado)
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

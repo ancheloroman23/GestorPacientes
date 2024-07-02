@@ -1,0 +1,58 @@
+﻿@using GestorPacientes.Core.Application.ViewModels.Cita
+@model CitaSaveViewModel
+
+@{
+    ViewData["Title"] = "Cita";
+}
+
+<div class="custom-container">
+    <h1>Citas</h1>
+    <div class="custom-subtitle">Agregando cita</div>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="custom-card">
+                <form asp-action="Create">
+                    <div class="custom-card-header">
+                        <span>Area de registro</span>
+                    </div>
+                    <div class="custom-card-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input asp-for="EstadoCita" type="hidden" value="Consulta" class="form-control" />
+                        <div class="form-group">
+                            <label asp-for="PacienteId" class="control-label">Paciente</label>
+                            <select asp-for="PacienteId" asp-items="@(new SelectList(Model.Pacientes, "PacienteId", "Nombre"))" class="form-control custom-select" required>
+                                <option value="">Seleccionar el paciente</option>
+                            </select>
+                            <span asp-validation-for="PacienteId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DoctorId" class="control-label">Doctor</label>
+                            <select asp-for="DoctorId" asp-items="@(new SelectList(Model.Doctores, "DoctorId", "Nombre"))" class="form-control custom-select" required>
+                                <option value="">Seleccionar el doctor</option>
+                            </select>
+                            <span asp-validation-for="DoctorId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FechaCita" class="control-label">Fecha & Hora</label>
+                            <input asp-for="FechaCita" class="form-control custom-input" required />
+                            <span asp-validation-for="FechaCita" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="RazonCita" class="control-label">Razon de Cita</label>
+                            <textarea asp-for="RazonCita" class="form-control custom-textarea" required></textarea>
+                            <span asp-validation-for="RazonCita" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="custom-card-footer">
+                        <div class="form-group mt-2 text-center">
+                            <input type="submit" value="Guardar" class="btn btn-success custom-button" />
+                            <a asp-action="Index" class="btn btn-outline-primary custom-button">Regresar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

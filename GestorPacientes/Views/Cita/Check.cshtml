@@ -1,0 +1,53 @@
+﻿@using GestorPacientes.Core.Application.ViewModels.Cita
+@model CitaViewModel
+
+@{
+    ViewData["Title"] = "Cita";
+}
+
+<div class="d-flex justify-content-between bottom-line">
+    <div>
+        <h1 class="d-inline">Resultados de Laboratorio</h1>
+    </div>
+</div>
+<hr />
+
+@if (Model == null)
+{
+    <div class="text-center">
+        <h3 class="fw-light">No existen pruebas para esta cita</h3>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="text-center mb-3">
+                <form asp-action="Check">
+                    <input type="hidden" asp-for="CitaId" class="form-control">
+                    <input type="submit" value="Completar" asp-route-id="@Model.CitaId" class="btn btn-outline-success col-5 mx-auto">
+                    <a asp-action="Index" class="btn btn-outline-info col-5 mx-auto">Cerrar</a>
+                </form>
+            </div>
+            <hr />
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nombre de la prueba</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ResultadosLabs)
+                    {
+                        <tr>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.PruebaLab.NombrePruebaLab)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.Estado)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

@@ -1,0 +1,110 @@
+﻿@using GestorPacientes.Core.Application.ViewModels.PruebaLab
+@model IEnumerable<PruebaLabViewModel>
+
+@{
+    ViewData["Title"] = "PruebaLab";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="mb-0">Pruebas de Laboratorio</h1>
+                <a class="btn btn-primary" asp-controller="PruebaLab" asp-action="Create">Nueva prueba</a>
+            </div>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            @if (Model.Count() == 0)
+            {
+                <h3 class="text-muted">No existen pruebas</h3>
+            }
+            else
+            {
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Nombre</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.NombrePruebaLab)</td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.PruebaLabId" class="btn btn-warning">
+                                        Editar
+                                    </a>
+                                </td>
+                                <td>
+                                    <a asp-action="Delete" asp-route-id="@item.PruebaLabId" class="btn btn-danger">
+                                        Eliminar
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+@* <div class="d-flex justify-content-between bottom-line">
+    <div>
+        <h1 class="d-inline">Pruebas de Laboratorio</h1>
+    </div>
+    <div>
+        <a class="btn btn-primary m-2" asp-controller="PruebaLab" asp-action="Create">Nueva prueba</a>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        @if (Model.Count() == 0)
+        {
+            <h3 class="fw-light">No existen pruebas</h3>
+        }
+        else
+        {
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>
+                            Nombre
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td></td>
+                            <td class="align-items-center">
+                                @Html.DisplayFor(modelItem => item.NombrePruebaLab)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.PruebaLabId" class="btn btn-outline-warning col-4 mx-auto">
+                                    Editar
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.PruebaLabId" class="btn btn-outline-danger col-4 mx-auto">
+                                    Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div> *@

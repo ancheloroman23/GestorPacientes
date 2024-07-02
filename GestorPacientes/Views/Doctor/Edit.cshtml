@@ -1,0 +1,78 @@
+﻿@using GestorPacientes.Core.Application.ViewModels.Doctor
+@model DoctorUpdateViewModel
+
+@{
+    ViewData["Title"] = "Doctores";
+}
+
+<div class="d-flex justify-content-between bottom-line">
+    <div>
+        <h1 class="d-inline">Doctores</h1>
+    </div>
+    <div>
+        <h5 class="fw-light col-m-3 offset-6">Editando: @Html.DisplayFor(model => model.Nombre) 
+                                                        @Html.DisplayFor(model => model.Apellido)</h5>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+        <div class="card">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div class="card-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="DoctorId" class="form-control" />
+                    <input type="hidden" asp-for="Foto" class="form-control" />
+
+                    <div class="mb-3">
+                        <label asp-for="Nombre" class="form-label">Nombre:</label>
+                        <input type="text" asp-for="Nombre" class="form-control" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Apellido" class="form-label">Apellido:</label>
+                        <input type="text" asp-for="Apellido" class="form-control" />
+                        <span asp-validation-for="Apellido" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">Email:</label>
+                        <input type="text" asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Telefono" class="form-label">Teléfono:</label>
+                        <input type="text" asp-for="Telefono" class="form-control" />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Cedula" class="form-label">Cédula:</label>
+                        <input type="text" asp-for="Cedula" class="form-control" />
+                        <span asp-validation-for="Cedula" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label asp-for="Imagen" class="control-label">Foto</label>
+                        <input required type="file" asp-for="Imagen" class="form-control-file" />
+                        <span asp-validation-for="Imagen" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="form-group mt-2 text-center">
+                        <input type="submit" value="Guardar" class="btn btn-block btn-success col-6 mx-auto" />
+                        <a asp-action="Index" class="btn btn-block btn-primary col-5 mx-auto">Regresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mt-5">
+            <img src="/images/doctores/@Model.Foto" class="card-img" alt="@Model.Nombre">
+        </div>
+    </div>
+</div>

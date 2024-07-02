@@ -1,0 +1,70 @@
+﻿@using GestorPacientes.Core.Application.ViewModels.Paciente
+@model PacienteSaveViewModel
+
+@{
+    ViewData["Title"] = "Patiente";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <h1 class="card-title">Agregar Paciente</h1>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-controller="Paciente" asp-action="Create" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Nombre" class="control-label">Nombre</label>
+                            <input asp-for="Nombre" class="form-control" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Apellido" class="control-label">Apellido</label>
+                            <input asp-for="Apellido" class="form-control" />
+                            <span asp-validation-for="Apellido" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Telefono" class="control-label">Teléfono</label>
+                            <input asp-for="Telefono" class="form-control" />
+                            <span asp-validation-for="Telefono" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Direccion" class="control-label">Dirección</label>
+                            <input asp-for="Direccion" class="form-control" />
+                            <span asp-validation-for="Direccion" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Cedula" class="control-label">Cédula</label>
+                            <input asp-for="Cedula" class="form-control" />
+                            <span asp-validation-for="Cedula" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FechaNacimiento" class="control-label">Fecha de nacimiento</label>
+                            <input asp-for="FechaNacimiento" type="date" class="form-control" />
+                            <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" asp-for="Alergico" id="alergico" />
+                            <label class="form-check-label" for="alergico">Alergias</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" asp-for="Fumador" id="fumador" />
+                            <label class="form-check-label" for="fumador">Fumador</label>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label asp-for="Imagen" class="control-label">Foto</label>
+                            <input required type="file" asp-for="Imagen" class="form-control-file" />
+                            <span asp-validation-for="Imagen" class="text-danger"></span>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <a asp-controller="Doctor" asp-action="Index" class="btn btn-warning ml-2">Volver atrás</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
